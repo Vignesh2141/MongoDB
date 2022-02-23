@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservations</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Reservations </h1>
+        </div>
+    </div>
+    <a th:href="@{/edit-add-reservation}">
+        <button type="button" class="btn btn-success">Add Reservation</button>
+    </a>
+    <a th:href="@{/search/new}">
+        <button type="button" class="btn btn-success">Click here to search</button>
+    </a>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <!--
+                     <th>Id</th>
+                    -->
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mobile No</th>
+                    <th>Email Id</th>
+                    <th>Reservation Date</th>
+                    <th>Last Modified Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${reservations.empty}">
+                    <td colspan="2"> No Reservations Available</td>
+                </tr>
+                <tr th:each="reservation : ${reservations}">
+                    <!--
+                    <td><span th:text="${reservation.id}"> Id </span></td>
+                    -->
+                    <td><span th:text="${reservation.fname}">First Name </span></td>
+                    <td><span th:text="${reservation.lname}">last Name </span></td>
+                    <td><span th:text="${reservation.mobileNo}"> mobile </span></td>
+                    <td><span th:text="${reservation.emailId}"> email </span></td>
+                    <td><span th:text="${#temporals.format(reservation.date, 'dd-MM-yyyy HH:mm')}"> Date </span></td>
+                    <td><span th:text="${reservation.lastModified}"> last modified </span></td>
+                    
+                    <td>
+                        <a th:href="@{/delete-reservation/{id}(id=${reservation.id})}">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </a>
+                        <a th:href="@{/edit-add-reservation/{id}(id=${reservation.id})}">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

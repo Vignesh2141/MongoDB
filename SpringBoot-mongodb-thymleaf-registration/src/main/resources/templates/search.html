@@ -1,0 +1,72 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservations</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Reservation </h1>
+        </div>
+    </div>
+
+    <form th:action="@{/search-now}"  method="get">
+        
+        <div class="form-group">
+            <label for="fname">First Name:</label>
+            <input name="fname" type="text" th:value="${fname}" class="form-control" id="fname"  placeholder="Search using fname lname and emailId">
+           
+        
+        
+        <button type="submit" class="btn btn-success"> Search</button><a th:href="@{/reservations-ui}">
+        <button type="button" class="btn btn-success">All registrations</button>
+    </a>
+    
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Reservations </h1>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <!--
+                     <th>Id</th>
+                    -->
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mobile No</th>
+                    <th>Email Id</th>
+                    <th>Reservation Date</th>
+                    <th>Last Modified Date</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                
+                <tr th:each="reservation : ${reservation1}">
+                    <!--
+                    <td><span th:text="${reservation.id}"> Id </span></td>
+                    -->
+                    <td><span th:text="${reservation.fname}">First Name </span></td>
+                    <td><span th:text="${reservation.lname}">last Name </span></td>
+                    <td><span th:text="${reservation.mobileNo}"> mobile </span></td>
+                    <td><span th:text="${reservation.emailId}"> email </span></td>
+                    <td><span th:text="${#temporals.format(reservation.date, 'dd-MM-yyyy HH:mm')}"> Date </span></td>
+                    <td><span th:text="${reservation.lastModified}"> last modified </span></td>
+                    
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

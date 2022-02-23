@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add / Edit Reservations</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Reservation </h1>
+        </div>
+    </div>
+
+    <form th:action="@{/save-reservation}" th:object="${reservation}" method="post">
+        <input type="hidden" th:value="${reservation.id}" name="id"/>
+        <div class="form-group">
+            <label for="fname">First Name:</label>
+            <input th:field="*{fname}" type="text" class="form-control" id="fname">
+            <label th:style="'color:red'" th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"></label>
+        </div>
+        <div class="form-group">
+            <label for="lname">Last Name:</label>
+            <input th:field="*{lname}" type="text" class="form-control" id="lname">
+            <label th:style="'color:red'" th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"></label>
+        </div>
+         <div class="form-group">
+            <label for="lname">Mobile Number:</label>
+            <input th:field="*{mobileNo}" type="text" class="form-control" id="mobileNo">
+            <label th:style="'color:red'" th:if="${#fields.hasErrors('mobileNo')}" th:errors="*{mobileNo}"></label>
+        </div>
+        <div class="form-group">
+            <label for="emailId">Email Id:</label>
+            <input th:field="*{emailId}" type="text" class="form-control" id="emailId">
+            <label th:style="'color:red'" th:if="${#fields.hasErrors('emailId')}" th:errors="*{emailId}"></label>
+        </div>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input th:field="*{date}" type="text" class="form-control" id="date">
+            <label th:style="'color:red'" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></label>
+        </div>
+        <a th:href="@{/reservations-ui}">
+            <button type="button" class="btn btn-danger">Cancel</button>
+        </a>
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+</div>
+</body>
+</html>
